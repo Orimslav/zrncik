@@ -68,6 +68,25 @@
     font-size:13px;pointer-events:none;transition:opacity .5s;z-index:6;
   }
   @media (max-width:640px){ .navbtn{width:46px;height:46px} .iconbtn .lbl{display:none} }
+
+  /* Phones in landscape: chrome (header/controls) eats most of the short
+     viewport height, leaving the book tiny. Slim the chrome down so .stage
+     gets almost the full height, letting .bookwrap (height:100%, fixed
+     16:9 ratio) grow as large as the screen height allows. */
+  @media (orientation:landscape) and (max-height:500px){
+    header.topbar{padding:4px 10px}
+    .topbar .sub{display:none}
+    .stage{padding:4px}
+    /* Drop the bottom bar (it was stealing height from the book) and
+       float prev/next into the empty side margins beside the book instead,
+       vertically centred; the page counter becomes a small bottom pill. */
+    .controls{position:absolute;inset:0;padding:0;pointer-events:none;z-index:8}
+    .navbtn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;font-size:18px;pointer-events:auto}
+    #prev{left:6px}
+    #next{right:6px}
+    .counter{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);min-width:0;padding:5px 12px;font-size:11px;pointer-events:auto}
+    .hint{bottom:4px;padding:6px 12px;font-size:11px}
+  }
 </style>
 </head>
 <body>
